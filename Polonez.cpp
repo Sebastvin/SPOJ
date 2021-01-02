@@ -1,10 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
-#include <iostream>
-#include <string>
-#include <cstdlib>
-
 using namespace std;
 
 int n;
@@ -12,7 +7,7 @@ vector<int> tab;
 string name;
 int man=0;
 int girl=0;
-int x = 0;
+int x=0;
 
 int main()
 {
@@ -36,7 +31,6 @@ int main()
             {
                 man++;
             }
-
         }
     }
 
