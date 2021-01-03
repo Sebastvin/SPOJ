@@ -8,26 +8,61 @@ using namespace std;
 bool palindrome(int first, int second)
 {
 	vector<int> v1, v2;
-	
-	for (int i =0;i<2;i++)
+
+	if ((first >= 10 && second < 10) || (first < 10 && second >= 10) || (first >= 10 && second >= 10))
 	{
-		v1.push_back(first % 10);
-		first /= 10;
+		for (int i = 0;i < 2;i++)
+		{
+			v1.push_back(first % 10);
+			first /= 10;
+		}
+
+		for (int i = 0;i < 2;i++)
+		{
+			v2.push_back(second % 10);
+			second /= 10;
+		}
+
+		int j = v2.size() - 1;
+		for (int i = 0;i < v2.size();i++, j--)
+		{
+			if (v1[i] != v2[j])
+				return false;
+		}
+		return true;
+	}
+	else
+	{
+		while (first!=0)
+		{
+			v1.push_back(first % 10);
+			first /= 10;
+		}
+
+		while(second!=0)
+		{
+			v2.push_back(second % 10);
+			second /= 10;
+		}
+
+		int r = 0;
+		if (v2.size() > v1.size())
+		{
+			r = v1.size();
+		}
+		else
+		{
+			r = v2.size();
+		}
+		int j = v2.size() - 1;
+		for (int i = 0;i < r;i++, j--)
+		{
+			if (v1[i] != v2[j])
+				return false;
+		}
+		return true;
 	}
 
-	for (int i = 0;i < 2;i++)
-	{
-		v2.push_back(second % 10);
-		second /= 10;
-	}
-
-	int j = v2.size()-1;
-	for (int i = 0;i < v1.size();i++,j--)
-	{
-		if (v1[i] != v2[j])
-			return false;
-	}
-	return true;
 }
 
 int main()
@@ -44,11 +79,6 @@ int main()
 		for (int i = 0;i < 2;i++)
 		{
 			first = first * 10 + t[i]-48;
-
-			if (t[i] - 48 == 0)
-			{
-				first *= 10;
-			}
 		}
 
 		for (int i = 3;i < 5;i++)
@@ -74,51 +104,98 @@ int main()
 				cout << "00:00" << endl;
 				break;
 			}
-			else if (second == 0)
-			{
-				continue;
-			}
-			else if (first == 0)
-			{
-				cout << "00:";
-				switch (second)
-				{
-					case 1:
-						cout << "01";
-						break;
-					case 2:
-						cout << "02";
-						break;
-					case 3:
-						cout << "03";
-						break;
-					case 4:
-						cout << "04";
-						break;
-					case 5:
-						cout << "05";
-						break;
-					case 6:
-						cout << "06";
-						break;
-					case 7:
-						cout << "07";
-						break;
-					case 8:
-						cout << "08";
-						break;
-					case 9:
-						cout << "09";
-						break;
-				}
-				cout << endl;
-				break;
-			}
-			else if (second!=0)
+			else 
 			{
 				if (palindrome(first, second))
 				{
-					cout << first << ":" << second << endl;
+					if (first == 0)
+					{
+						cout << "00";
+					}
+					else if (first<10)
+					{
+						switch (first)
+						{
+						case 1:
+							cout << "01";
+							break;
+						case 2:
+							cout << "02";
+							break;
+						case 3:
+							cout << "03";
+							break;
+						case 4:
+							cout << "04";
+							break;
+						case 5:
+							cout << "05";
+							break;
+						case 6:
+							cout << "06";
+							break;
+						case 7:
+							cout << "07";
+							break;
+						case 8:
+							cout << "08";
+							break;
+						case 9:
+							cout << "09";
+							break;
+						}
+						
+					}
+					else
+					{
+						cout << first;
+					}
+
+					cout << ":";
+
+					if (second == 0)
+					{
+						cout << "00:";
+					}
+					else if(second<10)
+					{
+						switch (second)
+						{
+						case 1:
+							cout << "01";
+							break;
+						case 2:
+							cout << "02";
+							break;
+						case 3:
+							cout << "03";
+							break;
+						case 4:
+							cout << "04";
+							break;
+						case 5:
+							cout << "05";
+							break;
+						case 6:
+							cout << "06";
+							break;
+						case 7:
+							cout << "07";
+							break;
+						case 8:
+							cout << "08";
+							break;
+						case 9:
+							cout << "09";
+							break;
+						}
+					}
+					else
+					{
+						cout << second;
+					}
+
+					cout << endl;
 					break;
 				}
 
