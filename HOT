@@ -1,0 +1,44 @@
+#include <iostream>
+#include <iomanip>
+#include <vector>
+
+using namespace std;
+
+int main()
+{
+    int d, h;
+    cin >> d >> h;
+
+    vector<vector<int>> hotele;
+    for (int i =0;i<h;i++)
+    {
+        hotele.push_back(vector<int>());
+        int odleglosc, cena;
+        cin >> odleglosc >> cena;
+        hotele[i].push_back(odleglosc);
+        hotele[i].push_back(cena);
+    }
+
+    int przejechane = 0, wynik =0, najmniejszaCena=hotele[0][1];
+    for (int i = 0;i < h;i++)
+    {
+        if (przejechane <= 800)
+        {
+            przejechane += hotele[i][0];
+            if (najmniejszaCena > hotele[i][1])
+            {
+                najmniejszaCena = hotele[i][1];
+            }
+        }
+        else
+        {
+            wynik += najmniejszaCena;
+            przejechane = 0;
+            najmniejszaCena = hotele[i][1];
+        }
+
+    }
+
+    cout << endl;
+    return 0;
+}
